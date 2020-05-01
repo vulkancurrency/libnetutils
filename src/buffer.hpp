@@ -97,8 +97,8 @@ public:
   void write_string64(const char *string, uint64_t size);
   void write_string64(std::string str);
 
-  void write_string(const char *string, size_t size);
-  void write_string(std::string str);
+  void write_compact_string(const char *string, size_t size);
+  void write_compact_string(std::string str);
 
   void write_padded_string(const char *string, size_t size, size_t padded_size);
   void write_padded_string(std::string str, size_t padded_size);
@@ -154,7 +154,7 @@ public:
   std::string read_string32();
   std::string read_string64();
 
-  std::string read_string();
+  std::string read_compact_string();
 
   std::string read_padded_string(size_t padded_size);
 

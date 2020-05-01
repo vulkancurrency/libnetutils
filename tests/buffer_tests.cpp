@@ -196,18 +196,18 @@ TEST(BufferTests, write_float64)
   delete buffer_iterator;
 }
 
-TEST(BufferTests, write_string)
+TEST(BufferTests, write_compact_string)
 {
   Buffer *buffer = new Buffer();
 
   std::string str = "A quick brown fox jumps over the lazy dog.";
   std::string str1 = "THE QUICK BROWN FOX JUMPED OVER THE LAZY DOG'S BACK 1234567890";
-  buffer->write_string(str);
-  buffer->write_string(str1);
+  buffer->write_compact_string(str);
+  buffer->write_compact_string(str1);
 
   BufferIterator *buffer_iterator = new BufferIterator(buffer);
-  EXPECT_TRUE(buffer_iterator->read_string().compare(str) == 0);
-  EXPECT_TRUE(buffer_iterator->read_string().compare(str1) == 0);
+  EXPECT_TRUE(buffer_iterator->read_compact_string().compare(str) == 0);
+  EXPECT_TRUE(buffer_iterator->read_compact_string().compare(str1) == 0);
   EXPECT_TRUE(buffer_iterator->get_remaining_size() == 0);
 
   delete buffer;

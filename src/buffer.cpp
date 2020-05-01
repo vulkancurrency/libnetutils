@@ -291,7 +291,7 @@ void Buffer::write_string64(std::string str)
   write_string64(str.c_str(), str.size());
 }
 
-void Buffer::write_string(const char *string, size_t size)
+void Buffer::write_compact_string(const char *string, size_t size)
 {
   assert(size > 0);
   if (size <= std::numeric_limits<uint8_t>::max())
@@ -320,9 +320,9 @@ void Buffer::write_string(const char *string, size_t size)
   }
 }
 
-void Buffer::write_string(std::string str)
+void Buffer::write_compact_string(std::string str)
 {
-  write_string(str.c_str(), str.size());
+  write_compact_string(str.c_str(), str.size());
 }
 
 void Buffer::write_padded_string(const char *string, size_t size, size_t padded_size)
@@ -685,7 +685,7 @@ std::string BufferIterator::read_string64()
   return str;
 }
 
-std::string BufferIterator::read_string()
+std::string BufferIterator::read_compact_string()
 {
   uint8_t string_type = read_uint8();
   switch (string_type)
